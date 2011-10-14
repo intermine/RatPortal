@@ -1,0 +1,25 @@
+<div id="count">[% genes.size %] genes</div>
+
+<table>
+    [% FOREACH gene IN genes %]
+    <tr>
+        <td>[% gene.symbol %]</td>
+        <td>
+            <span class="go-size">[% gene.goAnnotation.size %]</span>
+            <ul style="display: none">
+                [% FOREACH go IN gene.goAnnotation %]
+                <li>[% go.ontologyTerm.name %]</li>
+                [% END %]
+            </ul>
+        </td>
+    </tr>
+    [% END %]
+</table>
+
+<script type="text/javascript">
+    $(function() {
+        $('.go-size').click(function() {
+            $(this).next().slideToggle();
+        });
+    });
+</script>
