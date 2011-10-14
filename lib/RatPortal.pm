@@ -23,7 +23,7 @@ get '/' => sub {
     };
 };
 
-get '/childterms/of/:parent' => sub  {
+post '/childterms' => sub  {
     my $parent = param('parent');
     my $q = $ratmine->new_query(class => "DOTerm")->select("name")->where("parents.name" => $parent);
     debug("$q");
@@ -31,7 +31,7 @@ get '/childterms/of/:parent' => sub  {
     return template 'childterms' => {childterms => [@childterms]}, {layout => undef};
 };
 
-get '/genes/related/to/:term' => sub {
+post '/genes' => sub {
     my $term = param('term');
     my $query = $ratmine->new_query(class => 'Gene')->select("*", "goAnnotation.ontologyTerm.*")->where("doAnnotation.ontologyTerm.parents.name" => $term);
     my $genes = $query->results(as => "jsonobjects", json => "inflate");

@@ -25,11 +25,11 @@
     $(function() {
         $('#categories').change(function() {
             var category = $(this).val();
-            $('#childterms').load("[% proxy.uri_for('/childterms/of/') %]" + category);
+            $('#childterms').load("[% proxy.uri_for('/childterms') %]", {parent: category});
         });
         $('#find-stuff').click(function() {
             var category = $('#childterms').val();
-            $('#gene-section').load("[% proxy.uri_for('/genes/related/to/') %]" + category);
+            $('#gene-section').load("[% proxy.uri_for('/genes') %]", {term: category});
         });
     });
 </script>
