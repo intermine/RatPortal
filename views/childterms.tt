@@ -1,0 +1,3 @@
+[% FOREACH c IN childterms %]
+    <option value="[% c %]">[% c %]</option>
+[% END %]
